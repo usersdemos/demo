@@ -15,6 +15,7 @@
 </div>
 <?php } ?>	
 <div class="col-md-12 text-right">
+<a type="button" class="btn btn-info" href="<?=base_url('product/generateXls')?>">Export</a>
 <a type="button" class="btn btn-success" href="<?=base_url('product/create')?>">Add</a>
 <button type="button" disabled class="btn btn-danger jsBulkDelete jsDelete" data-id="">Delete</button>
 </div>

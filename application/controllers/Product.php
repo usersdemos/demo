@@ -175,6 +175,47 @@ class Product extends AuthData{
         $this->product->delete_attribute($id);
         echo json_encode(array('success'=>true));
         
-    }   
+    }
+
+    public function delete_product(){
+        $ids = explode(',', $this->input->post('ids'));
+        foreach($ids as $id){
+                $this->product->delete_product($id);
+        }
+        echo json_encode(array('success'=>true,'message'=>'Category deleted successfully!!'));        
+    }    
+
+    public function generateXls() {
+        // create file name
+        $fileName = 'data-'.time().'.xlsx';
+        // load excel library
+        $this->load->library('excel');
+        $listInfo = $this->product->product_list();
+
+        $objPHPExcel = new PHPExcel();
+        $objPHPExcel->setActiveSheetIndex(0);
+        // set Header
+        $objPHPExcel->getActiveSheet()->SetCellValue('A1', 'Product Name');
+        $objPHPExcel->getActiveSheet()->SetCellValue('B1', 'Category');
+        $objPHPExcel->getActiveSheet()->SetCellValue('C1', 'Price');
+        $objPHPExcel->getActiveSheet()->SetCellValue('D1', 'Date');  
+        // set Row
+        $rowCount = 2;
+        foreach ($listInfo as $list) {
+            $objPHPExcel->getActiveSheet()->SetCellValue('A' . $rowCount, $list['product_name']);
+            $objPHPExcel->getActiveSheet()->SetCellValue('B' . $rowCount, $list['product_name']);
+            $objPHPExcel->getActiveSheet()->SetCellValue('C' . $rowCount, $list['price']);
+            $objPHPExcel->getActiveSheet()->SetCellValue('D' . $rowCount, $list['created_at']);
+            $rowCount++;
+        }
+        $filename = "product_". date("Y-m-d-H-i-s").".csv";
+        header('Content-Type: application/vnd.ms-excel'); 
+        header('Content-Disposition: attachment;filename="'.$filename.'"');
+        header('Cache-Control: max-age=0'); 
+        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'CSV');  
+        $objWriter->save('php://output'); 
+ 
+    }
+              
     
 }

@@ -126,6 +126,21 @@ class Product_model extends CI_Model {
     	return true;
     }
 
+    public function product_list(){
+    	$this->db->select('*');
+    	$query = $this->db->get('product');
+    	return $query->result_array();
+    }
+
+    public function delete_product($id){
+    	$this->db->where('id',$id);
+    	$this->db->delete('product'); 
+
+    	$this->db->where('product_id',$id);
+    	$this->db->delete('product_attribute');     		
+
+    }        
+
 
              
 
