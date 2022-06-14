@@ -76,7 +76,6 @@ function add_attribute(){
       data: { index: index},
       success: function (result) {
         res = JSON.parse(result); 
-        console.log(res);
         let url= "product/template/attribute_add_more";
         let html = load_template(url);
         var template = $.templates(html);

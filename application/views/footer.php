@@ -6,7 +6,7 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>	
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"></script>
 	<script src="<?= base_url('asset/js/script.js') ?>"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.js"></script>	
@@ -49,7 +49,14 @@
 	<?php if($this->router->fetch_method() == 'edit'){ ?>	
 	<script src="<?=base_url();?>asset/js/product/edit.js"></script>
 	<?php } ?>	
-	<?php } ?>						 
+	<?php } ?>
+
+	<!-- popup -->
+	<?php if($this->router->fetch_class() == 'popup'){?>
+	<?php if($this->router->fetch_method() == 'index'){ ?>	
+	<script src="<?=base_url();?>asset/js/popup/list.js"></script>
+	<?php }?>
+	<?php } ?>							 
 
 </body>
 </html>

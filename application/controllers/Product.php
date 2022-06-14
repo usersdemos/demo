@@ -185,7 +185,7 @@ class Product extends AuthData{
         echo json_encode(array('success'=>true,'message'=>'Category deleted successfully!!'));        
     }    
 
-    public function generateXls() {
+    public function generatexls() {
         // create file name
         $fileName = 'data-'.time().'.xlsx';
         // load excel library
