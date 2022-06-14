@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '',
+	'hostname' => 'win',
 	'username' => 'root',
-	'password' => '',
-	'database' => '',
+	'password' => '#win123',
+	'database' => 'flavor_live4',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

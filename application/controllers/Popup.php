@@ -62,7 +62,47 @@ class Popup extends AuthData{
     	$id = $this->input->post('id');
         $data  = $this->common->get_row_data('category','id',$id);
         echo json_encode(array('success'=>true,'data' => $data));
-    }        
+    }
+
+    public function update_category(){
+        $post_data = $this->input->post();
+        $this->form_validation->set_rules('category_name', 'Category Mame', 'required');
+        $this->form_validation->set_rules('description', 'Description', 'required');
+        if ($this->form_validation->run() == false) {
+            $errors = validation_errors();
+            echo json_encode(['error'=>$errors]);
+        } else {
+            $files = $_FILES['image'];
+            if (isset($files['name']) && !empty($files['name'])) {
+                if (!is_dir('uploads/category')) {
+                    mkdir('./uploads/category');
+                }        
+                $config = array(
+                    'upload_path'   => FCPATH . "/uploads/category/",
+                    'allowed_types' => 'jpg|png|jpeg',
+                    'overwrite'     => TRUE,                       
+                );
+                $this->load->library('upload', $config);  
+                $file_name = time();
+                $config['file_name'] = $file_name;
+                $this->upload->initialize($config);
+                if ( ! $this->upload->do_upload('image')) {
+                    $error = array('error' => $this->upload->display_errors());
+                } else {
+                    $uploads = $this->upload->data();
+
+                    $post_data['category_image'] = 'uploads/category/'.$uploads['file_name'];
+                    unlink($_SERVER['DOCUMENT_ROOT'].'/'.$this->input->post('old_image'));
+                }
+            }else{
+                $post_data['category_image'] = $this->input->post('old_image');
+            }
+            $this->category->update_category($post_data);
+            echo json_encode(array('success'=>true,'message'=>'Category updated successfully!!'));            
+        }
+
+        exit();
+    }            
 
    
               

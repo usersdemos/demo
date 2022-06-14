@@ -1,4 +1,4 @@
-       			<form id="create_category" method="post" enctype="multipart/form-data">
+       			<form id="update_category" method="post" enctype="multipart/form-data">
 							<div class="form-group row">
 								
 								<label class="col-12 col-sm-3 col-form-label" for="category_name">Name</label>
@@ -24,7 +24,7 @@
 							</div>
 							<div class="modal-footer">
 							        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-							        <button type="submit" class="btn btn-primary jsSubmit">Save changes</button>
+							        <button type="submit" class="btn btn-primary jsEditCategory">Save changes</button>
 							</div>							
 				</form>
       
