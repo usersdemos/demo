@@ -19,12 +19,12 @@
 			<div class="page-header">
 				<h1>Category Edit</h1>
 			</div>
-			<form action="<?=base_url('category/update_category')?>" id="update_category" method="post" enctype="multipart/form-data">
-				<input type="hidden" class="form-control" id="id" name="id" placeholder="Enter a category name" required data-msg-required="Please enter category name" value="<?=$id;?>">
+			<form id="update_category" method="post" enctype="multipart/form-data">
+				<input type="hidden" class="form-control" id="id" name="id" placeholder="Enter a category name" required data-msg-required="Please enter category name" value="<?=$id;?>" >
 				<div class="form-group row">
 					<div class="col-md-4">
 					<label for="category_name">Name</label>
-					<input type="text" class="form-control" id="category_name" name="category_name" placeholder="Enter a category name" required data-msg-required="Please enter category name"  value="<?=$category_name;?>">
+					<input type="text" class="form-control" id="category_name" name="category_name" placeholder="Enter a category name" required data-msg-required="Please enter category name"  value="<?=$category_name;?>" remote="<?php echo base_url('category/check_category/'.$id); ?>" data-msg-remote="This category is already exists!">
 					</div>
 				</div>
 				<div class="form-group row">

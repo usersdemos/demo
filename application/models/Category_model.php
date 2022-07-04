@@ -9,9 +9,11 @@ class Category_model extends CI_Model {
 
 	function get_category_list() {
 		$myJoin = '';
-		$custom_where ='1=1';
+		$custom_where ='';
+		
 		$table = 'category'; 
-		$primaryKey = 'id'; 
+		$primaryKey = 'id';
+		$group_by = 'category.id'; 
 		$dt = 0;
 		$columns = array( 
 		array( 'customfilter' => 'id','db' => 'id', 'dt' => $dt++, 'formatter' => function( $id, $row ) { 
@@ -32,7 +34,7 @@ class Category_model extends CI_Model {
 		) 
 		); 
 		echo json_encode( 
-			SSP::simple( $_GET, $this->common->sql_detail(), $table, $primaryKey, $columns,$myJoin,$custom_where )
+			SSP::simple( $_GET, $this->common->sql_detail(), $table, $primaryKey, $columns,$myJoin,$custom_where,$group_by)
 		 );
         
 

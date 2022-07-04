@@ -25,6 +25,22 @@ class Category extends AuthData{
         $this->load->view('footer');
     }
 
+    public function check_category($id = '') {
+        $category_name = $this->input->get('category_name');
+        $this->db->where('category_name',$category_name);
+        if(!empty($id)){
+            $this->db->where('id != ',$id);
+        }
+        $query = $this->db->get('category');
+        $categorys = $query->result_array();
+        if(count($categorys)>0){
+            echo 'false';
+        } else{
+            echo 'true';
+        }
+    }
+
+
     public function save_category(){
         $post_data = $this->input->post();
         $this->form_validation->set_rules('category_name', 'Category Mame', 'required');

@@ -160,6 +160,7 @@ class Product extends AuthData{
                     }            
                 }else{
                     $post_data['product_images'] = $this->input->post('old_image');
+
                 }
 
                 $this->product->update_product($post_data);
@@ -216,6 +217,23 @@ class Product extends AuthData{
         $objWriter->save('php://output'); 
  
     }
+
+    public function nmypds(){
+    $this->load->library('pdf');
+    $this->pdf->load_view('common/template');
+    $this->pdf->render();
+    $this->pdf->stream("welcome.pdf");
+
+    }
+
+    public function mypdf(){
+        $this->load->library('pdfgenerator');
+        $data['download'] = 'download';
+        $html = $this->load->view('product/mypdf',$data,true);
+        $path = $this->pdfgenerator->generate($html,time(),true,'A4','landscape');
+        dd($path);
+
+   }    
               
     
 }

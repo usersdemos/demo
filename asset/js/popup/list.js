@@ -52,8 +52,9 @@ function editPopup(id){
         let html = load_template(url);
         var template = $.templates(html);
         var htmlOutput = template.render(res.data);
+        $(".jsEditModel").html(htmlOutput);
         $('#exampleEditModal').modal('show');
-        $(".modal-body").html(htmlOutput);
+        
       }
     });
 }
@@ -76,7 +77,7 @@ $(document).on('click', '.jsEditCategory', function(e){
                   swal.fire({
                     title: 'Updated!',
                     text: res.message,
-                    timer: 5000,
+                    timer: 50000,
                     showCancelButton: false,
                     showConfirmButton: false
                   }).then(

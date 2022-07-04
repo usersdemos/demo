@@ -110,5 +110,37 @@ class User extends CI_Controller {
 		}
 		redirect('/login');
 	}
+
+	public function forgot_password() {
+
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+
+		if ($this->form_validation->run() === false) {
+
+			$this->load->view('header');
+			$this->load->view('user/forgot/forgot', $data);
+			$this->load->view('footer');
+
+		} else {
+			$email = $this->input->post('email');
+			
+		}		
+		
+
+	}
+
+	public function check_email() {
+
+		$email = $this->input->get('email');	
+		$this->db->where('email',$email);
+        $query = $this->db->get('users');
+        $users = $query->result_array();
+        if(count($users)>0){
+            echo 'true';
+        } else{
+            echo 'false';
+        }		
+
+	}		
 	
 }

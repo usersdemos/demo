@@ -11,7 +11,7 @@
 			<div class="page-header">
 				<h1>Product Edit</h1>
 			</div>
-			<form action="<?=base_url('product/update_product')?>" id="update_product" method="post" enctype="multipart/form-data">
+			<form id="update_product" method="post" enctype="multipart/form-data">
 				<input type="hidden" id="product_id" name="product_id" value="<?=$id;?>">
 				<div class="form-group row">
 					<div class="col-md-4">
@@ -50,9 +50,14 @@
 				<div class="form-group row">
 					<div class="col-md-4">
 					<label for="image">Image</label>
-					<input type="hidden" id="old_image" name="old_image" value="<?=$product_image;?>">
 					<input type="file" class="form-control" id="image_name" name="image_name[]" multiple="multiple" placeholder="Enter a image" accept="image/*" data-msg-accept="Please upload file in these format only (jpg, jpeg, png).">
-					<image src="<?=base_url($product_image)?>" width="75px" height="75px">
+					<?php 
+					$product_images = explode(',',$product_image);
+					foreach($product_images as $img){ ?>
+						<image src="<?=base_url($img)?>" width="75px" height="75px">
+						<input type="hidden" id="old_image" name="old_image[]" value="<?=$img;?>">
+					<?php } ?>
+					
 					</div>
 				</div>
 <!-- start: Product attribute -->

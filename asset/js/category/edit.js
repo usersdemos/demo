@@ -15,6 +15,9 @@ $(document).on('click', '.jsSubmit', function(e){
   e.preventDefault();
     form = $('#update_category');
      var formData = new FormData(form[0]);
+    if ((!form.valid())) {
+        return false;
+    }     
     if(form.valid()){
           $.ajax({
             type: 'post',

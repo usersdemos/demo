@@ -51,5 +51,15 @@
 			</div>
 		</nav>
 	</header>
-
+	<?php if (!empty($this->session->userdata('user_data'))) { ?>
+<div class="container">
+	<div class="row">		
+		<ul class="nav nav-pills">
+		  <li role="presentation" class="active"><a href="<?= base_url('category') ?>">Category</a></li>
+		  <li role="presentation"><a href="<?= base_url('product') ?>">Product</a></li>
+		  <li role="presentation"><a href="<?= base_url('popup') ?>">Popup</a></li>
+		</ul>
+	</div>
+</div>	
+	<?php } ?>
 	<main id="site-content" role="main">

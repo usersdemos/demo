@@ -155,7 +155,7 @@ function get_attribute_value(id,div_id){
       data: { id: id },         
       success: function (result) {
         res = JSON.parse(result);
-        if(res.value !=""){
+        if(res != null){
           $(".jsAttributeValue",div).val(res.value);
         }else{
           $(".jsAttributeValue",div).val('');
@@ -194,5 +194,4 @@ $(document).on("click",'.jsRemoveAttribute',function(e){
         
       }
     });
-
 })
